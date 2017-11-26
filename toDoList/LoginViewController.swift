@@ -7,16 +7,40 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController , GIDSignInUIDelegate{
 
     
-    @IBOutlet weak var theLabelError: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+   // @IBOutlet weak var theLabelError: UILabel!
+   
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var pswdTextField: UITextField!
     @IBAction func loginButtonTapped(_ sender: Any) {
         print("Login button is tapped");
-        let usr = "qwerty"
+        guard let email = nameTextField.text,
+            email != "",
+            let password = pswdTextField.text,
+            password != ""
+            else {
+                AlertController.showAlert(self, title: "Ошибка", messege: "Пожалуйста, заполните все необходимые поля")
+                return
+        }
+        Auth.auth().signIn(withEmail: email, password: password, completion: {(user, error) in
+            guard error == nil else {
+                AlertController.showAlert(self, title: "Ошибка", messege: error!.localizedDescription)
+                return
+            }
+            guard let user = user else {return}
+            print(user.email ?? "missing EMAIL")
+            print(user.displayName ?? "missing DISPLAY NAME")
+            print(user.uid)
+           // self.performSegue(withIdentifier: "signinSegue", sender: nil)
+        })
+        
+      /*  let usr = "qwerty"
         let pswd = "123"
         if nameTextField.text == usr &&
             pswdTextField.text == pswd
@@ -26,14 +50,27 @@ class LoginViewController: UIViewController {
             self.present(vc, animated: true, completion: nil)
         }
         else {
-            theLabelError.text = "Неверный логин или пароль"
-            theLabelError.backgroundColor = UIColor.red
-        }
+            titleLabel.text = "Неверный логин или пароль"
+            titleLabel.backgroundColor = UIColor.red
+        }*/
     }
+ 
     override func viewDidLoad() {
+        
+        
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        
+        titleLabel?.numberOfLines = 1
+        titleLabel?.adjustsFontSizeToFitWidth = true
+        titleLabel?.minimumScaleFactor = 0.1
+        
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().signIn()
+        
+        // TODO(developer) Configure the sign-in button look/feel
+        // ...
     }
 
     override func didReceiveMemoryWarning() {

@@ -38,15 +38,23 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQn-Rl-tQY">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQn-Rl-tQY" customClass="RoundButton" customModule="toDoList" customModuleProvider="target">
                                 <rect key="frame" x="74" y="429" width="227" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.1846063329" green="0.32636974769999999" blue="0.92299403179999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Зарегистрироваться"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="14"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onSignUp:" destination="Niy-TW-1MK" eventType="touchUpInside" id="cXU-j6-yyL"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YEL-G2-DdZ">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YEL-G2-DdZ" customClass="RoundButton" customModule="toDoList" customModuleProvider="target">
                                 <rect key="frame" x="74" y="483" width="227" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.1218891516327858" green="0.61833328008651733" blue="0.086081184446811676" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -54,6 +62,11 @@
                                 <state key="normal" title="Я уже зарегистрирован">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="13"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="QPH-LY-4kb" kind="show" id="2gW-ed-aSv"/>
                                 </connections>
@@ -101,7 +114,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" red="0.87875612319999996" green="1" blue="0.77593577010000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.85858124494552612" green="0.92186266183853149" blue="0.77962523698806763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="Gho-7g-l3e"/>
                     </view>
                     <connections>
@@ -109,6 +122,7 @@
                         <outlet property="newName" destination="FgJ-jt-Cfr" id="ehQ-Er-Ld9"/>
                         <outlet property="newPassword" destination="SIB-Km-6Jk" id="7tg-QB-Ef0"/>
                         <outlet property="repeatPassword" destination="Xdc-1C-6KP" id="qdK-Xy-nSb"/>
+                        <segue destination="QPH-LY-4kb" kind="show" identifier="signUpSegue" id="Sw0-Oc-wDn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHg-J7-31m" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -124,4 +138,7 @@
             <point key="canvasLocation" x="-311.19999999999999" y="-284.70764617691157"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Sw0-Oc-wDn"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -7,16 +7,31 @@
 //
 
 import UIKit
-
+import Firebase
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    @IBOutlet weak var lable: UILabel!
+    
     @IBOutlet weak var tableView: UITableView!
+/*   @IBAction func onSignOutTapped(_ sender: Any) {
+       do {
+           try Auth.auth().signOut()
+            performSegue(withIdentifier: "signoutSegue", sender: nil)
+        } catch {
+            print(error)
+        }
+    }*/
+    
+    
+    
+    
     var tasks: [Task] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        guard let username = Auth.auth().currentUser?.displayName else {return}
+        lable.text = "Привет \(username)"
     }
     
     override func viewWillAppear(_ animated: Bool) {
